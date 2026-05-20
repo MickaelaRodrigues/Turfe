@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="turfe.css">
     <title>Turfe Amigo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<h2>A hora do turfe</h2>
-<button onclick="turfar()">Dar uma volta</button>  
-<hr>
-<div id="divOutput"></div>
+    <div class="turfe">
+        <h2 class="ttl-turfe">A Hora do Turfe</h2>
+        <img class="img-turf" src="img_banner.png" alt="">
+        <button class="btn-turf" onclick="turfar()">Dar uma volta</button>  
+
+        <div id="divOutput" style="display: none;>
+            <p class="txt-rod">Rodada 1 - Cavalo 1  Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 2 - Cavalo 2 Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 3 - Cavalo 3  Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 4 - Cavalo 4 Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 5 - Cavalo 5 Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 6 - Cavalo 1 Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 7 - Cavalo 2 Percorreu: XX - Acumulou: YY.</p>
+        </div>
+
+        <div id="container" style="display: none;">
+            <div class="card" id="venc2">
+                2º
+                
+                <div class="cavalo">Cavalo 3</div>
+            </div>
+            
+            <div class="card" id="venc1">1º
+                <div class="cavalo">Cavalo 5</div>
+            </div>
+
+            <div class="card" id="venc3">3º
+                <div class="cavalo">Cavalo 1</div>
+            </div>
+        </div>
+    </div>
 </body>
+
 <script>
-    
+    function turfar(){
+        container.style.display = "flex";
+        divOutput.style.display = "block";
+    }
 </script>
 </html>
