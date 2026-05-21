@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,21 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="turfe">
         <h2 class="ttl-turfe">A Hora do Turfe</h2>
         <img class="img-turf" src="img_banner.png" alt="">
-        <button class="btn-turf" onclick="turfar()">Dar uma volta</button>  
+        <button class="btn-turf" onclick="turfar()">Dar uma volta</button>
 
         <div id="divOutput" style="display: none">
-            <p class= "txt-rod">Rodada 1 - Cavalo 1  Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 1 - Cavalo 1 Percorreu: XX - Acumulou: YY.</p>
             <p class="txt-rod">Rodada 2 - Cavalo 2 Percorreu: XX - Acumulou: YY.</p>
-            <p class="txt-rod">Rodada 3 - Cavalo 3  Percorreu: XX - Acumulou: YY.</p>
+            <p class="txt-rod">Rodada 3 - Cavalo 3 Percorreu: XX - Acumulou: YY.</p>
             <p class="txt-rod">Rodada 4 - Cavalo 4 Percorreu: XX - Acumulou: YY.</p>
             <p class="txt-rod">Rodada 5 - Cavalo 5 Percorreu: XX - Acumulou: YY.</p>
             <p class="txt-rod">Rodada 6 - Cavalo 1 Percorreu: XX - Acumulou: YY.</p>
@@ -30,10 +33,10 @@
         <div id="container" style="display: none;">
             <div class="card" id="venc2">
                 2º
-                
+
                 <div class="cavalo">Cavalo 3</div>
             </div>
-            
+
             <div class="card" id="venc1">1º
                 <div class="cavalo">Cavalo 5</div>
             </div>
@@ -89,11 +92,14 @@
                                 `
 
         }
-        divOutput.innerHTML += `<br> -------------- PÓDIO -------------- <br>`
+        divOutput.innerHTML += `<br> ---------------------- PÓDIO ----------------------- <br>`
 
         let vencedor = 99
-        let segundoLugar = 0
-        let terceiroLugar = 0
+        let segundoLugar = 99
+        let terceiroLugar = 99
+        let posicao = 0
+        let posicao_2 = 0
+        let posicao_3 = 0
 
         for (let i = 0; i < temposAcumulados.length; i++) {
 
@@ -101,50 +107,39 @@
             if (vencedor > temposAcumulados[i]) {
 
                 vencedor = temposAcumulados[i]
-                var posicao = temposAcumulados.indexOf(temposAcumulados[i])
-
-
+                posicao = temposAcumulados.indexOf(temposAcumulados[i])
 
             }
-            
-    
-
-            segundoLugar = temposAcumulados[i]
-            
-            if (((segundoLugar > vencedor) && segundoLugar < temposAcumulados[i])) {
-                
-                var posicao2 = temposAcumulados.indexOf(temposAcumulados[i])
-            }
-
-            
-            terceiroLugar = temposAcumulados[i]
-            
-            if ((terceiroLugar > segundoLugar)) {
-                
-                var posicao3 = temposAcumulados.indexOf(temposAcumulados[i])
-            } 
-
         }
 
-        
         for (let i = 0; i < temposAcumulados.length; i++) {
-            
-            if (vencedor > temposAcumulados[i]) {
 
-                vencedor = temposAcumulados[i]
-                var posicao = temposAcumulados.indexOf(temposAcumulados[i])
+            if ((temposAcumulados[i] > vencedor) && temposAcumulados[i] < segundoLugar) {
 
+                segundoLugar = temposAcumulados[i]
+                posicao_2 = temposAcumulados.indexOf(temposAcumulados[i])
+            }
+
+        }
+
+        for (let i = 0; i < temposAcumulados.length; i++) {
+
+
+            if (temposAcumulados[i] > segundoLugar && temposAcumulados[i] < terceiroLugar) {
+                terceiroLugar = temposAcumulados[i]
+                posicao_3 = temposAcumulados.indexOf(temposAcumulados[i])
             }
         }
 
 
-        
-        divOutput.innerHTML += ` 1º Lugar ${nomes[posicao]} - com o tempo total de corrida: ${vencedor.toFixed(1)}<br>`
-        divOutput.innerHTML += ` 2º Lugar ${nomes[posicao2]} - com o tempo total de corrida: ${segundoLugar.toFixed(1)}<br>`
-        divOutput.innerHTML += ` 3º Lugar ${nomes[posicao3]} - com o tempo total de corrida: ${terceiroLugar.toFixed(1)}<br>`
+
+        divOutput.innerHTML += ` 1º Lugar - ${nomes[posicao]} - com o tempo total de corrida: ${vencedor.toFixed(1)}<br>`
+        divOutput.innerHTML += ` 2º Lugar - ${nomes[posicao_2]} - com o tempo total de corrida: ${segundoLugar.toFixed(1)}<br>`
+        divOutput.innerHTML += ` 3º Lugar - ${nomes[posicao_3]} - com o tempo total de corrida: ${terceiroLugar.toFixed(1)}<br>`
 
 
     }
 
 </script>
+
 </html>
